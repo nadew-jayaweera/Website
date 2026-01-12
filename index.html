@@ -85,6 +85,31 @@
             transform: translate(-50%, -50%) scale(1.5);
             background: rgba(99, 102, 241, 0.2);
         }
+        
+        /* Animated Gradient Keyframes */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes cloudFloat {
+            0% {
+                transform: translate3d(-2%, -2%, 0) scale(1);
+            }
+            50% {
+                transform: translate3d(2%, 1%, 0) scale(1.05);
+            }
+            100% {
+                transform: translate3d(-1%, 2%, 0) scale(1.02);
+            }
+        }
 
         /* Loader */
         .loader-wrapper {
@@ -536,6 +561,8 @@
         .section-header {
             text-align: center;
             margin-bottom: 4rem;
+            position: relative; /* Fixed: added */
+            z-index: 2; /* Fixed: added */
         }
 
         .section-header h2 {
@@ -563,9 +590,77 @@
             margin-bottom: 0.5rem;
         }
 
-        /* About Section */
-        .about {
-            background: var(--dark-light);
+        /* Gradient Cloud Sections - UPDATED */
+        .about,
+        .experience,
+        .projects,
+        .contact {
+            position: relative;
+            background: linear-gradient(45deg, #2b1b2f, #3a2848, #1f3a5c, #0f4c75, #145c6c, #3b2f5c);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            overflow: hidden;
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+
+        .about::before,
+        .experience::before,
+        .projects::before,
+        .contact::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.1) 0%, transparent 55%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 1;
+        }
+
+        .about::after,
+        .experience::after,
+        .projects::after,
+        .contact::after {
+            content: '';
+            position: absolute;
+            inset: -20%;
+            background: radial-gradient(60% 60% at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.14), rgba(255,255,255,0));
+            filter: blur(10px);
+            mix-blend-mode: screen;
+            opacity: 0.1;
+            transition: opacity 0.35s ease;
+            animation: cloudFloat 9s ease-in-out infinite alternate;
+            z-index: 1;
+            pointer-events: none; /* FIXED: THIS IS THE CRITICAL LINE THAT WAS MISSING */
+        }
+
+        .about:hover::before,
+        .experience:hover::before,
+        .projects:hover::before,
+        .contact:hover::before,
+        .about:hover::after,
+        .experience:hover::after,
+        .projects:hover::after,
+        .contact:hover::after {
+            opacity: 0.2;
+        }
+
+        /* Light theme variants for gradients */
+        body.light-theme .about {
+            background: linear-gradient(135deg, #94b3ff 0%, #b39dfc 35%, #ffb1d8 70%, #ffe08a 100%);
+        }
+
+        body.light-theme .experience {
+            background: linear-gradient(135deg, #ffb5d0 0%, #ff8fa3 35%, #ffc27a 70%, #ffe29f 100%);
+        }
+
+        body.light-theme .projects {
+            background: linear-gradient(135deg, #7dd3fc 0%, #93c5fd 35%, #a7f3d0 70%, #c4f1f9 100%);
+        }
+
+        body.light-theme .contact {
+            background: linear-gradient(135deg, #9be7ff 0%, #c7d2fe 35%, #d8b4fe 70%, #ffcfe3 100%);
         }
 
         .about-grid {
@@ -573,6 +668,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
+            position: relative; /* Fixed: added */
+            z-index: 2; /* Fixed: added */
         }
 
         .about-image {
@@ -654,6 +751,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            position: relative; /* Fixed: added */
+            z-index: 2; /* Fixed: added */
         }
 
         .skill-category {
@@ -717,8 +816,23 @@
         }
 
         /* Projects Section */
-        .projects {
-            background: var(--dark-light);
+        /* Note: Background color removed here as it is now shared with .about */
+        
+        .projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.12) 0%, transparent 50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .projects:hover::before {
+            opacity: 1;
         }
 
         .projects-filter {
@@ -727,6 +841,8 @@
             gap: 1rem;
             margin-bottom: 3rem;
             flex-wrap: wrap;
+            position: relative; /* Fixed: added */
+            z-index: 2; /* Fixed: added */
         }
 
         .filter-btn {
@@ -749,6 +865,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            position: relative; /* Fixed: added */
+            z-index: 2; /* Fixed: added */
         }
 
         .project-card {
@@ -871,6 +989,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            position: relative; /* Fixed: added */
+            z-index: 2; /* Fixed: added */
         }
 
         .service-card {
@@ -949,14 +1069,13 @@
         }
 
         /* Experience Section */
-        .experience {
-            background: var(--dark-light);
-        }
+        /* Note: Background color removed here as it is now shared with .about */
 
         .timeline {
             max-width: 800px;
             margin: 0 auto;
             position: relative;
+            z-index: 2; /* Fixed: added */
         }
 
         .timeline::before {
@@ -1039,6 +1158,7 @@
             max-width: 900px;
             margin: 0 auto;
             position: relative;
+            z-index: 2; /* Fixed: added */
         }
 
         .testimonial-card {
@@ -1141,14 +1261,14 @@
         }
 
         /* Contact Section */
-        .contact {
-            background: var(--dark-light);
-        }
+        /* Note: Background color removed here as it is now shared with .about */
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
+            position: relative; /* Fixed: added */
+            z-index: 2; /* Fixed: added */
         }
 
         .contact-info h3 {
@@ -1537,7 +1657,6 @@
     </style>
 </head>
 <body>
-    <!-- Loader -->
     <div class="loader-wrapper">
         <div class="loader">
             <span></span>
@@ -1546,14 +1665,11 @@
         </div>
     </div>
 
-    <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-dot"></div>
 
-    <!-- Particles Canvas -->
     <canvas id="particles-canvas"></canvas>
 
-    <!-- Navigation -->
     <nav class="navbar">
         <a href="#" class="logo">Portfolio</a>
         <ul class="nav-links">
@@ -1577,7 +1693,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg">
             <div class="gradient-sphere sphere-1"></div>
@@ -1630,7 +1745,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
         <div class="section-header reveal">
             <span class="section-tag">About Me</span>
@@ -1673,7 +1787,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section class="skills" id="skills">
         <div class="section-header reveal">
             <span class="section-tag">My Skills</span>
@@ -1740,7 +1853,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="section-header reveal">
             <span class="section-tag">My Work</span>
@@ -1880,7 +1992,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
         <div class="section-header reveal">
             <span class="section-tag">What I Do</span>
@@ -1945,7 +2056,6 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
     <section class="experience" id="experience">
         <div class="section-header reveal">
             <span class="section-tag">My Journey</span>
@@ -1992,7 +2102,6 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="section-header reveal">
             <span class="section-tag">Testimonials</span>
@@ -2050,7 +2159,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="section-header reveal">
             <span class="section-tag">Get In Touch</span>
@@ -2122,7 +2230,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <span class="footer-logo">Portfolio</span>
@@ -2133,7 +2240,6 @@
         </div>
     </footer>
 
-    <!-- Success Modal -->
     <div class="modal" id="success-modal">
         <div class="modal-content">
             <i class="fas fa-check-circle"></i>
@@ -2242,6 +2348,26 @@
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
             }
+        });
+
+        // Mouse interactive gradient effect
+        const gradientSections = document.querySelectorAll('.about, .experience, .projects, .contact');
+        
+        gradientSections.forEach(section => {
+            section.addEventListener('mousemove', (e) => {
+                const rect = section.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                section.style.setProperty('--mouse-x', `${x}%`);
+                section.style.setProperty('--mouse-y', `${y}%`);
+                section.style.backgroundPosition = `${x}% ${y}%`;
+            });
+            
+            section.addEventListener('mouseleave', () => {
+                section.style.setProperty('--mouse-x', '50%');
+                section.style.setProperty('--mouse-y', '50%');
+                section.style.backgroundPosition = '50% 50%';
+            });
         });
 
         // Reveal on scroll
