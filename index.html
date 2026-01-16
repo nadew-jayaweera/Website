@@ -134,15 +134,16 @@
         /* Container for logo and spinner */
         .splash-content {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 5rem; /* Space between logo and ring */
+            gap: 2rem; /* Space between logo and ring */
         }
 
         /* The Logo Image */
         .splash-logo {
             /* Adjust width as needed based on actual image size */
-            width: 350px; 
+            width: 500px; 
             height: auto;
             /* Optional: adds a subtle glow matching the design */
             filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.3));
@@ -183,10 +184,6 @@
                 border-width: 3px;
             }
         }
-
-        .loader span:nth-child(1) { animation-delay: -0.32s; }
-        .loader span:nth-child(2) { animation-delay: -0.16s; }
-
 
         /* Navigation */
         .navbar {
@@ -2206,26 +2203,26 @@
     </div>
 
     <script>
-        // Loader - Remove immediately when DOM is ready
+        // Loader - Show for a minimum time and wait for page load
+        const loaderStartTime = Date.now();
+        const MIN_LOADER_TIME = 1500; // Minimum display time in milliseconds
+
         function hideLoader() {
             const loader = document.querySelector('.loader-wrapper');
-            if (loader) {
+            if (!loader) return;
+
+            const elapsedTime = Date.now() - loaderStartTime;
+            const remainingTime = Math.max(0, MIN_LOADER_TIME - elapsedTime);
+
+            setTimeout(() => {
                 loader.classList.add('hidden');
-                // Also remove from DOM after animation
+                // Remove from DOM after fade animation completes
                 setTimeout(() => loader.remove(), 600);
-            }
+            }, remainingTime);
         }
         
-        // Hide loader as soon as possible
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', hideLoader);
-        } else {
-            // DOM already loaded
-            hideLoader();
-        }
-        
-        // Fallback: Force hide after 2 seconds maximum
-        setTimeout(hideLoader, 2000);
+        // Wait for both DOM content and all resources (images, etc.)
+        window.addEventListener('load', hideLoader);
 
         // Custom Cursor
         const cursor = document.querySelector('.cursor');
