@@ -400,6 +400,28 @@
             cursor: pointer;
             border: none;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            color: var(--white);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: -20%;
+            background: var(--gradient-1);
+            background-size: 200% 200%;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            animation: gradientShift 12s ease infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .btn > * {
+            position: relative;
+            z-index: 1;
         }
 
         .btn-primary {
@@ -648,19 +670,27 @@
 
         /* Light theme variants for gradients */
         body.light-theme .about {
-            background: linear-gradient(135deg, #94b3ff 0%, #b39dfc 35%, #ffb1d8 70%, #ffe08a 100%);
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff, #5f27cd);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
         }
 
         body.light-theme .experience {
-            background: linear-gradient(135deg, #ffb5d0 0%, #ff8fa3 35%, #ffc27a 70%, #ffe29f 100%);
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff, #5f27cd);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
         }
 
         body.light-theme .projects {
-            background: linear-gradient(135deg, #7dd3fc 0%, #93c5fd 35%, #a7f3d0 70%, #c4f1f9 100%);
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff, #5f27cd);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
         }
 
         body.light-theme .contact {
-            background: linear-gradient(135deg, #9be7ff 0%, #c7d2fe 35%, #d8b4fe 70%, #ffcfe3 100%);
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff, #5f27cd);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
         }
 
         .about-grid {
@@ -785,6 +815,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.4s ease;
+            color: var(--white) !important;
+            font-size: 1.3rem;
+            position: relative;
+        }
+
+        .skill-category h3 i::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-2);
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+
+        .skill-category:hover h3 i::after {
+            opacity: 1;
         }
 
         .skill-list {
@@ -1045,7 +1094,10 @@
         }
 
         .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.08) rotate(3deg);
+            background: var(--gradient-2);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            color: var(--white);
         }
 
         .service-card h3 {
@@ -1342,6 +1394,7 @@
             color: var(--white);
             font-size: 1.2rem;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .social-links a:hover {
@@ -1403,6 +1456,7 @@
             border: none;
             border-radius: 10px;
             color: var(--white);
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
@@ -1411,11 +1465,36 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: -20%;
+            background: var(--gradient-2);
+            background-size: 200% 200%;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            animation: gradientShift 12s ease infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .submit-btn > * {
+            position: relative;
+            z-index: 1;
         }
 
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .submit-btn:hover::before {
+            opacity: 0.45;
         }
 
         /* Footer */
