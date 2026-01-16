@@ -149,22 +149,218 @@
             filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.3));
         }
 
-        /* The Spinning Ring */
+        /* The Creative Loading Ring Container */
         .loading-ring {
-            width: 50px;
-            height: 50px;
-            /* The faint track of the ring */
-            border: 4px solid rgba(6, 182, 212, 0.15);
-            /* The bright cyan moving part - using your accent color variable */
-            border-top: 4px solid var(--accent); 
-            border-radius: 50%;
-            animation: spinRing 1s linear infinite;
+            position: relative;
+            width: 60px;
+            height: 60px;
         }
 
-        /* Animation for the ring */
+        /* Outer spinning ring with gradient */
+        .loading-ring::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--accent);
+            border-right-color: var(--primary);
+            animation: spinRing 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        /* Inner counter-rotating ring */
+        .loading-ring::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: calc(100% - 16px);
+            height: calc(100% - 16px);
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-bottom-color: var(--secondary);
+            border-left-color: rgba(236, 72, 153, 0.5);
+            animation: spinRingReverse 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        /* Pulsing glow effect */
         @keyframes spinRing {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% { 
+                transform: rotate(0deg) scale(1);
+                filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.6));
+            }
+            50% { 
+                transform: rotate(180deg) scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.8));
+            }
+            100% { 
+                transform: rotate(360deg) scale(1);
+                filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.6));
+            }
+        }
+
+        /* Counter-rotation with color shift */
+        @keyframes spinRingReverse {
+            0% { 
+                transform: rotate(360deg) scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: rotate(180deg) scale(0.9);
+                opacity: 0.7;
+            }
+            100% { 
+                transform: rotate(0deg) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Container for ring and loading bar */
+        .loader-elements {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        /* Hacker Loading Bar Container */
+        .hacker-loader {
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            min-width: 400px;
+        }
+
+        .loader-text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+
+        .status-text {
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+            animation: textGlitch 3s infinite;
+        }
+
+        .percentage {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* Loading Bar Styles */
+        .loader-bar-container {
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .loader-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(6, 182, 212, 0.2);
+        }
+
+        .loader-progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, 
+                var(--accent) 0%, 
+                var(--primary) 50%, 
+                var(--accent) 100%);
+            background-size: 200% 100%;
+            animation: loadProgress 3s ease-in-out forwards, gradientShift 2s linear infinite;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.8),
+                        inset 0 0 10px rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .loader-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6));
+            animation: scanLine 1s linear infinite;
+        }
+
+        /* Glitch line overlay */
+        .glitch-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            animation: glitchMove 2s steps(10) infinite;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Terminal-style details */
+        .loader-details {
+            font-size: 0.75rem;
+            color: rgba(6, 182, 212, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .detail-line {
+            display: inline-block;
+            animation: blink 1.5s infinite;
+        }
+
+        /* Animations */
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            20% { width: 15%; }
+            40% { width: 40%; }
+            60% { width: 65%; }
+            80% { width: 85%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes scanLine {
+            0% { transform: translateX(-20px); }
+            100% { transform: translateX(400px); }
+        }
+
+        @keyframes glitchMove {
+            0%, 100% { left: 0%; opacity: 0; }
+            10% { left: 10%; opacity: 1; }
+            20% { left: 25%; opacity: 0.8; }
+            30% { left: 40%; opacity: 1; }
+            40% { left: 55%; opacity: 0.6; }
+            50% { left: 70%; opacity: 1; }
+            60% { left: 85%; opacity: 0.8; }
+            70% { left: 95%; opacity: 0; }
+        }
+
+        @keyframes textGlitch {
+            0%, 90%, 100% { opacity: 1; }
+            92% { opacity: 0.8; transform: translateX(-2px); }
+            94% { opacity: 1; transform: translateX(2px); }
+            96% { opacity: 0.8; transform: translateX(0); }
+        }
+
+        @keyframes blink {
+            0%, 49%, 100% { opacity: 1; }
+            50%, 99% { opacity: 0.3; }
         }
 
         /* Responsive adjustments for smaller screens */
@@ -176,6 +372,15 @@
 
             .splash-logo {
                 width: 220px;
+            }
+            
+            .loader-elements {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .hacker-loader {
+                min-width: 280px;
             }
         
             .loading-ring {
@@ -1772,7 +1977,24 @@
     <div class="loader-wrapper">
     <div class="splash-content">
         <img src="Assets/splash-logo.png" alt="Nadew Jayaweera" class="splash-logo">
-        <div class="loading-ring"></div>
+        <div class="loader-elements">
+            <div class="loading-ring"></div>
+            <div class="hacker-loader">
+                <div class="loader-text">
+                    <span class="status-text">INITIALIZING SYSTEM</span>
+                    <span class="percentage">0%</span>
+                </div>
+                <div class="loader-bar-container">
+                    <div class="loader-bar">
+                        <div class="loader-progress"></div>
+                        <div class="glitch-line"></div>
+                    </div>
+                </div>
+                <div class="loader-details">
+                    <span class="detail-line">[ OK ] Loading modules...</span>
+                </div>
+            </div>
+        </div>
     </div>
     </div>
 
@@ -2223,6 +2445,53 @@
         
         // Wait for both DOM content and all resources (images, etc.)
         window.addEventListener('load', hideLoader);
+
+        // Animate percentage counter
+        const percentageElement = document.querySelector('.percentage');
+        const statusText = document.querySelector('.status-text');
+        const detailLine = document.querySelector('.detail-line');
+        
+        const statusMessages = [
+            'INITIALIZING SYSTEM',
+            'LOADING MODULES',
+            'COMPILING ASSETS',
+            'ESTABLISHING CONNECTION',
+            'SYSTEM READY'
+        ];
+        
+        const detailMessages = [
+            '[ OK ] Loading modules...',
+            '[ OK ] Checking dependencies...',
+            '[ OK ] Rendering components...',
+            '[ OK ] Optimizing performance...',
+            '[ OK ] System online!'
+        ];
+        
+        let currentPercent = 0;
+        const percentInterval = setInterval(() => {
+            if (currentPercent <= 100) {
+                percentageElement.textContent = currentPercent + '%';
+                
+                // Update status messages at intervals
+                if (currentPercent === 20) {
+                    statusText.textContent = statusMessages[1];
+                    detailLine.textContent = detailMessages[1];
+                } else if (currentPercent === 40) {
+                    statusText.textContent = statusMessages[2];
+                    detailLine.textContent = detailMessages[2];
+                } else if (currentPercent === 60) {
+                    statusText.textContent = statusMessages[3];
+                    detailLine.textContent = detailMessages[3];
+                } else if (currentPercent === 90) {
+                    statusText.textContent = statusMessages[4];
+                    detailLine.textContent = detailMessages[4];
+                }
+                
+                currentPercent += 2;
+            } else {
+                clearInterval(percentInterval);
+            }
+        }, 50);
 
         // Custom Cursor
         const cursor = document.querySelector('.cursor');
