@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article | Creative Developer Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="navbar">
+        <a class="logo" href="../index.html">Portfolio</a>
+        <nav class="nav-links" id="nav-links">
+            <a href="../index.html#home">Home</a>
+            <a href="../index.html#projects">Projects</a>
+            <a href="index.html" class="active">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+        <div class="actions">
+            <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
+            <button class="menu-btn" id="menu-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="article" style="padding-top:120px;">
+        <div class="article-head">
+            <span class="section-tag">Feature</span>
+            <h1>Building neon-inspired UI without sacrificing performance</h1>
+            <div class="article-meta">
+                <span><i class="far fa-calendar"></i> Jan 2026</span>
+                <span><i class="far fa-clock"></i> 7 min read</span>
+                <span><i class="far fa-folder"></i> Frontend</span>
+            </div>
+        </div>
+        <article class="glass" style="padding:2rem; margin-top:1rem;">
+            <p>High-contrast gradients, glass panels, and motion can be performant when you lean on GPU-friendly properties, limit blur radius, and reuse tokens.</p>
+            <p>Start with design tokens for color, elevation, and radius. Use layered backgrounds instead of multiple shadows where possible, and reserve heavy blur for small elements. Animate transforms and opacity, and prefer will-change sparingly for interactive components.</p>
+            <p>For layouts, keep stacking contexts minimal, avoid over-nesting, and scope complex effects to isolated wrappers. Measure with the performance tab: watch FPS, layer count, and paint times as you iterate.</p>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="logo">Portfolio</div>
+                <p>Creative developer crafting bold, performant experiences.</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="index.html">Blog</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/blog.js"></script>
+</body>
+</html>

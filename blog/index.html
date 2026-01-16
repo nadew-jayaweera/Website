@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Creative Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="navbar">
+        <a class="logo" href="../index.html">Portfolio</a>
+        <nav class="nav-links" id="nav-links">
+            <a href="../index.html#home">Home</a>
+            <a href="../index.html#projects">Projects</a>
+            <a href="#blog" class="active">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+        <div class="actions">
+            <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
+            <button class="menu-btn" id="menu-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="blog">
+            <div class="hero-content">
+                <span class="badge">Fresh Posts</span>
+                <h1>Insights, tutorials, and behind‑the‑scenes from a creative developer.</h1>
+                <p>Deep dives into web, UI/UX, and product thinking with the same vibrant aesthetic as the portfolio.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="../index.html#projects">View Projects</a>
+                    <a class="btn btn-secondary" href="../index.html#contact">Work Together</a>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <h3>120+</h3>
+                        <span>Articles read monthly</span>
+                    </div>
+                    <div class="stat">
+                        <h3>15k</h3>
+                        <span>Words crafted</span>
+                    </div>
+                    <div class="stat">
+                        <h3>3</h3>
+                        <span>Fresh posts</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="glow glow-1"></div>
+                <div class="glow glow-2"></div>
+                <div class="card">
+                    <div class="card-title">Writing Palette</div>
+                    <p>Design systems, motion, and developer ergonomics in one stream.</p>
+                    <div class="chips">
+                        <span>#UIUX</span><span>#Web3</span><span>#Performance</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="posts">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag">Featured</span>
+                    <h2>Latest articles</h2>
+                </div>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                    <button class="filter-btn" data-filter="frontend">Frontend</button>
+                    <button class="filter-btn" data-filter="process">Process</button>
+                </div>
+            </div>
+            <div class="posts-grid">
+                <article class="post-card" data-category="frontend">
+                    <div class="post-meta">
+                        <span class="pill">Frontend</span>
+                        <span class="date">Jan 2026</span>
+                    </div>
+                    <h3>Building neon-inspired UI without sacrificing performance</h3>
+                    <p>How to combine gradients, glassmorphism, and motion with pragmatic CSS architecture and GPU-friendly tricks.</p>
+                    <div class="tags"><span>#CSS</span><span>#Performance</span><span>#Accessibility</span></div>
+                    <a class="read-more" href="post.html">Read article <i class="fas fa-arrow-right"></i></a>
+                </article>
+
+                <article class="post-card" data-category="design">
+                    <div class="post-meta">
+                        <span class="pill">Design</span>
+                        <span class="date">Dec 2025</span>
+                    </div>
+                    <h3>Motion language for modern portfolios</h3>
+                    <p>Principles for timing, easing, and layering motion so interactions feel intentional and on-brand.</p>
+                    <div class="tags"><span>#Animation</span><span>#UX</span><span>#Microcopy</span></div>
+                    <a class="read-more" href="post.html">Read article <i class="fas fa-arrow-right"></i></a>
+                </article>
+
+                    <article class="post-card" data-category="process">
+                    <div class="post-meta">
+                        <span class="pill">Process</span>
+                        <span class="date">Nov 2025</span>
+                    </div>
+                    <h3>Shipping faster with design tokens and content slots</h3>
+                    <p>How shared tokens, component contracts, and content guidelines cut delivery time across teams.</p>
+                    <div class="tags"><span>#DesignSystems</span><span>#Tokens</span><span>#TeamOps</span></div>
+                    <a class="read-more" href="post.html">Read article <i class="fas fa-arrow-right"></i></a>
+                </article>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="glass">
+                <div>
+                    <span class="section-tag">Newsletter</span>
+                    <h3>Stay ahead of the curve</h3>
+                    <p>Monthly drop of curated insights on design systems, frontend performance, and product thinking.</p>
+                </div>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="you@example.com" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="logo">Portfolio</div>
+                <p>Creative developer crafting bold, performant experiences.</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="#blog">Blog</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/blog.js"></script>
+</body>
+</html>
