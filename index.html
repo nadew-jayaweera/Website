@@ -6,6 +6,7 @@
     <title>Portfolio | Creative Developer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="Assets/logo1.png">
     <style>
         :root {
             --primary: #6366f1;
@@ -1978,12 +1979,12 @@
             box-shadow: 0 0 30px rgba(239, 68, 68, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
             background: #0f1115;
         }
-        
+
         .modal-content.security-breach i {
             color: #ef4444;
             animation: pulseRed 1s infinite;
         }
-        
+
         .btn-danger {
             background: #ef4444;
             color: white;
@@ -1996,12 +1997,12 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
+
         .btn-danger:hover {
             box-shadow: 0 0 15px #ef4444;
             background: #dc2626;
         }
-        
+
         .terminal-text {
             font-family: 'Courier New', monospace;
             color: #ef4444;
@@ -2012,25 +2013,25 @@
             margin: 1.5rem 0;
             border-left: 3px solid #ef4444;
         }
-        
+
         .terminal-text .prefix {
             color: #22c55e;
             margin-right: 10px;
         }
-        
+
         @keyframes pulseRed {
             0% { transform: scale(1); text-shadow: 0 0 0 rgba(239, 68, 68, 0.7); }
             50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(239, 68, 68, 0.9); }
             100% { transform: scale(1); text-shadow: 0 0 0 rgba(239, 68, 68, 0.7); }
         }
-        
+
         /* Glitch Text Effect */
         .glitch-header {
             color: #fff;
             position: relative;
             font-family: 'Space Grotesk', sans-serif;
         }
-        
+
         .glitch-header::before,
         .glitch-header::after {
             content: attr(data-text);
@@ -2040,21 +2041,21 @@
             width: 100%;
             height: 100%;
         }
-        
+
         .glitch-header::before {
             left: 2px;
             text-shadow: -1px 0 #00ffff;
             clip: rect(44px, 450px, 56px, 0);
             animation: glitch-anim 5s infinite linear alternate-reverse;
         }
-        
+
         .glitch-header::after {
             left: -2px;
             text-shadow: -1px 0 #ff00ff;
             clip: rect(44px, 450px, 56px, 0);
             animation: glitch-anim2 5s infinite linear alternate-reverse;
         }
-        
+
         @keyframes glitch-anim {
             0% { clip: rect(30px, 9999px, 10px, 0); }
             20% { clip: rect(80px, 9999px, 90px, 0); }
@@ -2063,7 +2064,7 @@
             80% { clip: rect(20px, 9999px, 100px, 0); }
             100% { clip: rect(90px, 9999px, 40px, 0); }
         }
-        
+
         @keyframes glitch-anim2 {
             0% { clip: rect(10px, 9999px, 80px, 0); }
             20% { clip: rect(100px, 9999px, 10px, 0); }
@@ -2071,6 +2072,40 @@
             60% { clip: rect(40px, 9999px, 90px, 0); }
             80% { clip: rect(80px, 9999px, 50px, 0); }
             100% { clip: rect(20px, 9999px, 10px, 0); }
+        }
+
+        /* --- Light Theme Overrides for Hacker Modal --- */
+
+        body.light-theme .modal-content.security-breach {
+            background: #ffffff;
+            /* Softer red glow for light mode */
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.25), inset 0 0 10px rgba(239, 68, 68, 0.1);
+        }
+
+        body.light-theme .glitch-header {
+            /* Dark text so it is visible on white background */
+            color: #0f172a; 
+        }
+
+        body.light-theme .terminal-text {
+            /* Very light red background instead of dark semi-transparent black */
+            background: rgba(239, 68, 68, 0.08);
+            /* Darker red text for better readability on light background */
+            color: #b91c1c;
+            border-left-color: #ef4444;
+        }
+
+        body.light-theme .terminal-text .prefix {
+            /* Darker green for contrast against white */
+            color: #15803d;
+        }
+
+        /* Adjust the glitch text shadows for light background */
+        body.light-theme .glitch-header::before {
+            text-shadow: -1px 0 #ef4444;
+        }
+        body.light-theme .glitch-header::after {
+            text-shadow: -1px 0 #3b82f6;
         }
     </style>
 </head>
