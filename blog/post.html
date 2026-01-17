@@ -3,101 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mastering CSS Grid | Your Name</title>
+    <title>Article | Creative Developer Blog</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/blog-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 <body>
-    <header id="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="../index.html" class="logo"><span class="logo-text">&lt;YN/&gt;</span></a>
-                <ul class="nav-menu" id="nav-menu">
-                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="index.html" class="nav-link active">Blog</a></li>
-                    <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="nav-actions">
-                    <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
-                    <button class="menu-toggle" id="menu-toggle"><span class="hamburger"></span></button>
-                </div>
-            </div>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="navbar">
+        <a class="logo" href="../index.html">Portfolio</a>
+        <nav class="nav-links" id="nav-links">
+            <a href="../index.html#home">Home</a>
+            <a href="../index.html#projects">Projects</a>
+            <a href="index.html" class="active">Blog</a>
+            <a href="../index.html#contact">Contact</a>
         </nav>
+        <div class="actions">
+            <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
+            <button class="menu-btn" id="menu-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </header>
 
-    <article class="single-post">
-        <header class="post-header">
-            <div class="container">
-                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
-                <div class="post-meta">
-                    <span class="post-cat">Frontend Development</span>
-                    <span class="post-date">Oct 15, 2023</span>
-                </div>
-                <h1 class="post-heading">Mastering CSS Grid Layout: A Complete Guide</h1>
-                <div class="author-block">
-                    <img src="../assets/images/profile.jpg" alt="Author">
-                    <div class="author-text">
-                        <span>Written by</span>
-                        <strong>Your Name</strong>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <div class="container">
-            <div class="post-feature-image">
-                <img src="../assets/images/project1.jpg" alt="CSS Grid">
+    <main class="article" style="padding-top:120px;">
+        <div class="article-head">
+            <span class="section-tag">Feature</span>
+            <h1>Building neon-inspired UI without sacrificing performance</h1>
+            <div class="article-meta">
+                <span><i class="far fa-calendar"></i> Jan 2026</span>
+                <span><i class="far fa-clock"></i> 7 min read</span>
+                <span><i class="far fa-folder"></i> Frontend</span>
             </div>
         </div>
-
-        <div class="container post-container">
-            <div class="post-body">
-                <p class="lead">CSS Grid Layout is the most powerful layout system available in CSS. It is a 2-dimensional system, meaning it can handle both columns and rows, unlike flexbox which is largely a 1-dimensional system.</p>
-                
-                <h2>Why Use CSS Grid?</h2>
-                <p>Before Grid, we had to rely on floats, positioning, and hacks to create complex web layouts. Grid solves these problems by providing a robust way to create grid structures.</p>
-                
-                <h3>Key Concepts</h3>
-                <ul>
-                    <li><strong>Grid Container:</strong> The direct parent of all the grid items.</li>
-                    <li><strong>Grid Item:</strong> The children (direct descendants) of the grid container.</li>
-                    <li><strong>Grid Line:</strong> The dividing lines that make up the structure of the grid.</li>
-                </ul>
-
-                <pre><code>.container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}</code></pre>
-
-                <p>This simple code creates a three-column grid where each column takes up an equal amount of space.</p>
-
-                <blockquote>
-                    "Grid is not a replacement for Flexbox. They work together perfectly."
-                </blockquote>
-
-                <h2>Conclusion</h2>
-                <p>Mastering Grid takes time, but it is an essential skill for modern web developers.</p>
-            </div>
-
-            <div class="share-links">
-                <span>Share this article:</span>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-            </div>
-        </div>
-    </article>
+        <article class="glass" style="padding:2rem; margin-top:1rem;">
+            <p>High-contrast gradients, glass panels, and motion can be performant when you lean on GPU-friendly properties, limit blur radius, and reuse tokens.</p>
+            <p>Start with design tokens for color, elevation, and radius. Use layered backgrounds instead of multiple shadows where possible, and reserve heavy blur for small elements. Animate transforms and opacity, and prefer will-change sparingly for interactive components.</p>
+            <p>For layouts, keep stacking contexts minimal, avoid over-nesting, and scope complex effects to isolated wrappers. Measure with the performance tab: watch FPS, layer count, and paint times as you iterate.</p>
+        </article>
+    </main>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> Your Name. All rights reserved.</p>
+        <div class="footer-content">
+            <div>
+                <div class="logo">Portfolio</div>
+                <p>Creative developer crafting bold, performant experiences.</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="index.html">Blog</a>
+                <a href="../index.html#contact">Contact</a>
             </div>
         </div>
     </footer>
 
-    <script src="../js/main.js"></script>
+    <script src="js/blog.js"></script>
 </body>
 </html>
