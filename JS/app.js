@@ -258,48 +258,93 @@ if (testimonials.length > 0 && prevBtn && nextBtn) {
 
 // Contact form
 const contactForm = document.getElementById('contact-form');
+
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Collect form data
+
+        // 1. SECURITY CHECK: Detect XSS payloads
         const formData = new FormData(contactForm);
-        const endpoint = contactForm.dataset.endpoint || contactForm.action;
+        const inputValues = [
+            formData.get('name'), 
+            formData.get('email'), 
+            formData.get('subject'), 
+            formData.get('message')
+        ];
+
+        // Regex to catch HTML tags, event handlers, and common XSS vectors
+        // Matches: <tag>, javascript:, onerror=, onload=, eval(), etc.
+        const xssPattern = /<[^>]*>|javascript:|onerror=|onload=|eval\(|alert\(/i;
+
+        let breachDetected = false;
+        inputValues.forEach(value => {
+            if (value && xssPattern.test(value)) {
+                breachDetected = true;
+            }
+        });
+
+        if (breachDetected) {
+            // TRIGGER THE HACKER MODAL
+            const hackerModal = document.getElementById('hacker-modal');
+            if (hackerModal) {
+                hackerModal.classList.add('active');
+                
+                // Optional: Console art for the curious developer looking at F12
+                console.log("%c SECURITY ALERT ", "background: red; color: white; font-size: 20px; font-weight: bold;");
+                console.log("Malicious payload intercepted. Submission blocked.");
+            }
+            return; // STOP HERE. Do not send data to server.
+        }
+
+        // 2. Normal Submission Logic (If no hack detected)
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const originalBtnText = submitBtn.innerHTML;
         
-        // Send to Formspree
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+
+        const endpoint = contactForm.getAttribute('data-endpoint') || 'https://formspree.io/f/mlgggdqg';
+
         fetch(endpoint, {
             method: 'POST',
             body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
+            headers: { 'Accept': 'application/json' }
         })
         .then(response => {
             if (response.ok) {
-                // Show success modal
                 const modal = document.getElementById('success-modal');
-                if (modal) {
-                    modal.classList.add('active');
-                }
-                // Reset form
+                if (modal) modal.classList.add('active');
                 contactForm.reset();
             } else {
-                alert('There was an error sending your message. Please try again.');
+                response.json().then(data => {
+                    if (Object.hasOwn(data, 'errors')) {
+                        alert(data["errors"].map(error => error["message"]).join(", "));
+                    } else {
+                        alert("Oops! There was a problem submitting your form");
+                    }
+                });
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('There was an error sending your message. Please try again.');
+            alert("Oops! There was a problem submitting your form. Please try again.");
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
         });
     });
 }
 
-// Close Modal Function (needed for the onclick="closeModal()" in your HTML)
+// Close Modal Functions
 window.closeModal = function() {
     const modal = document.getElementById('success-modal');
-    if (modal) {
-        modal.classList.remove('active');
-    }
+    if (modal) modal.classList.remove('active');
+}
+
+window.closeHackerModal = function() {
+    const modal = document.getElementById('hacker-modal');
+    if (modal) modal.classList.remove('active');
 }
 
 /* -----------------------------------------------
