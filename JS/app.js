@@ -261,13 +261,36 @@ const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // Show success modal
-        const modal = document.getElementById('success-modal');
-        if (modal) {
-            modal.classList.add('active');
-        }
-        // Reset form
-        contactForm.reset();
+        
+        // Collect form data
+        const formData = new FormData(contactForm);
+        const endpoint = contactForm.dataset.endpoint || contactForm.action;
+        
+        // Send to Formspree
+        fetch(endpoint, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Show success modal
+                const modal = document.getElementById('success-modal');
+                if (modal) {
+                    modal.classList.add('active');
+                }
+                // Reset form
+                contactForm.reset();
+            } else {
+                alert('There was an error sending your message. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error sending your message. Please try again.');
+        });
     });
 }
 
