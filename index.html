@@ -2379,7 +2379,7 @@
                 </div>
             </div>
 
-            <form action="https://formspree.io/f/mlgggdqg" method="post" class="contact-form reveal" id="contact-form">
+            <form action="#" data-endpoint="https://formspree.io/f/mlgggdqg" method="post" class="contact-form reveal" id="contact-form">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Your Name</label>
@@ -2683,21 +2683,6 @@
             }, 5000);
         }
 
-        // Contact form
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                // Show success modal
-                const modal = document.getElementById('success-modal');
-                if (modal) {
-                    modal.classList.add('active');
-                }
-                // Reset form
-                contactForm.reset();
-            });
-        }
-
         // Close Modal Function (needed for the onclick="closeModal()" in your HTML)
         window.closeModal = function() {
             const modal = document.getElementById('success-modal');
@@ -2828,5 +2813,6 @@
         initParticles();
         animateParticles();
     </script>
+    <script src="JS/app.js"></script>
 </body>
 </html>
