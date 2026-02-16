@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Page Not Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="Assets/logo1.png">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="not-found-page">
+    <div class="nf-ambient" aria-hidden="true">
+        <div class="nf-grid"></div>
+        <div class="nf-orbit"></div>
+        <div class="nf-spark"></div>
+    </div>
+
+    <main class="nf-wrap">
+        <section class="nf-card">
+            <div class="nf-code">404</div>
+            <h1>Signal lost in the grid</h1>
+            <p>
+                The page you are looking for drifted off course. Try a safe jump
+                to the homepage or explore a different sector.
+            </p>
+            <div class="nf-actions hero-buttons">
+                <a class="btn btn-primary" href="/"><span>Back to home</span></a>
+                <a class="btn btn-secondary" href="/blog/"><span>Visit the blog</span></a>
+            </div>
+            <div class="nf-links">
+                <a href="/#projects">Projects</a>
+                <a href="/#about">About</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </section>
+
+        <aside class="nf-panel">
+            <div class="nf-panel-header">
+                <span class="nf-dot"></span>
+                <span class="nf-dot"></span>
+                <span class="nf-dot"></span>
+                <span class="nf-panel-title">Navigation console</span>
+            </div>
+            <div class="nf-panel-body">
+                <label class="nf-label" for="nf-search">Quick search</label>
+                <input id="nf-search" class="nf-input" type="text" placeholder="Try: case studies, UI, blog" />
+
+                <div class="nf-stack">
+                    <div class="nf-tile">
+                        <h3>Featured work</h3>
+                        <p>Explore recent builds and interactive experiments.</p>
+                        <a class="nf-inline" href="/#projects">Open projects</a>
+                    </div>
+                    <div class="nf-tile">
+                        <h3>Latest posts</h3>
+                        <p>Design notes, dev tips, and behind-the-scenes.</p>
+                        <a class="nf-inline" href="/blog/">Read the blog</a>
+                    </div>
+                    <div class="nf-tile">
+                        <h3>Start a project</h3>
+                        <p>Tell me about your idea and timeline.</p>
+                        <a class="nf-inline" href="/#contact">Contact me</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="nf-footer">
+        <span>Need help finding something?</span>
+        <a class="nf-inline" href="/#contact">Use the contact form</a>
+    </footer>
+</body>
+</html>
