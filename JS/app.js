@@ -186,6 +186,7 @@ revealOnScroll();
 // Projects filter
 const filterBtns = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
+const projectsGrid = document.querySelector('.projects-grid');
 
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -193,9 +194,11 @@ filterBtns.forEach(btn => {
         btn.classList.add('active');
 
         const filter = btn.dataset.filter;
+        let visibleCardCount = 0;
 
         projectCards.forEach(card => {
             if (filter === 'all' || card.dataset.category === filter) {
+                visibleCardCount++;
                 card.style.display = 'block';
                 setTimeout(() => {
                     card.style.opacity = '1';
@@ -209,6 +212,10 @@ filterBtns.forEach(btn => {
                 }, 300);
             }
         });
+
+        if (projectsGrid) {
+            projectsGrid.classList.toggle('filtered-single', visibleCardCount === 1);
+        }
     });
 });
 

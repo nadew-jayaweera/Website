@@ -1157,6 +1157,11 @@
             z-index: 2; /* Fixed: added */
         }
 
+        .projects-grid.filtered-single {
+            grid-template-columns: minmax(320px, 520px);
+            justify-content: center;
+        }
+
         .project-card {
             background: var(--dark);
             border-radius: 20px;
@@ -1244,6 +1249,8 @@
 
         .project-info .tags {
             display: flex;
+            flex-wrap: wrap;
+            align-items: center;
             gap: 0.5rem;
             margin-bottom: 1rem;
         }
@@ -1254,6 +1261,8 @@
             background: rgba(99, 102, 241, 0.1);
             color: var(--primary);
             border-radius: 50px;
+            line-height: 1.2;
+            white-space: nowrap;
         }
 
         .project-info h3 {
@@ -2194,7 +2203,7 @@
             <div class="floating-card card-1">
                 <i class="fas fa-code"></i>
                 <div class="info">
-                    <h4>1+ Years</h4>
+                    <h4>2+ Years</h4>
                     <p>Experience</p>
                 </div>
             </div>
@@ -2225,7 +2234,7 @@
             <div class="about-image reveal">
                 <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?w=600&h=700&fit=crop" alt="About">
                 <div class="experience-card">
-                    <h3>1+</h3>
+                    <h3>2+</h3>
                     <p>Years of Experience</p>
                 </div>
             </div>
@@ -2290,6 +2299,7 @@
                     <span class="skill-tag">Firebase</span>
                     <span class="skill-tag">AWS</span>
                     <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">DigitalOcean</span>
                 </div>
             </div>
 
@@ -2323,6 +2333,32 @@
         <div class="projects-grid">
             <div class="project-card reveal" data-category="web">
                 <div class="project-image">
+                    <img src="Assets/green-living.png" alt="Project 1">
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="https://greenliving.life/" target="_blank" title="View Project"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://github.com/nadew-jayaweera/Green-Living.git" target="_blank" title="View Code"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="tags">
+                        <span class="tag">Node.js</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Tailwind CSS</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">GitHub</span>
+                        <span class="tag">DigitalOcean</span>
+                    </div>
+                    <h3>Green Living</h3>
+                    <p>A sustainable living platform for eco-conscious individuals.</p>
+                </div>
+            </div>
+
+
+            <div class="project-card reveal" data-category="web">
+                <div class="project-image">
                     <img src="Assets/vote.png" alt="Project 2">
                     <div class="project-overlay">
                         <div class="project-links">
@@ -2349,7 +2385,7 @@
 
             <div class="project-card reveal" data-category="web">
                 <div class="project-image">
-                    <img src="Assets/web.png" alt="Project 1">
+                    <img src="Assets/web.png" alt="Project 3">
                     <div class="project-overlay">
                         <div class="project-links">
                             <a href="https://www.swiftroutelanka.xyz" target="_blank" title="View Project"><i class="fas fa-external-link-alt"></i></a>
@@ -2406,7 +2442,7 @@
 
             <div class="project-card reveal" data-category="design">
                 <div class="project-image">
-                    <img src="Assets/UI.png" alt="Project 3">
+                    <img src="Assets/UI.png" alt="Project 6">
                     <div class="project-overlay">
                         <div class="project-links">
                             <a href="https://www.figma.com/proto/7zlMXHeSTJ9zO94VSr3cze/Spam-Call-Blocker?node-id=1-2&starting-point-node-id=1%3A2&t=imZmCf2yz4MBrWHJ-1" target="_blank" title="View Project"><i class="fas fa-external-link-alt"></i></a>
@@ -2425,7 +2461,7 @@
 
             <div class="project-card reveal" data-category="tools">
                 <div class="project-image">
-                    <img src="Assets/malware.png" alt="Project 6">
+                    <img src="Assets/malware.png" alt="Project 7">
                     <div class="project-overlay">
                         <div class="project-links">
                             <a href="https://github.com/nadew-jayaweera/malware-detection.git" target="_blank" title="View Code"><i class="fab fa-github"></i></a>
